@@ -5,9 +5,29 @@
 #include "Fight.h"
 
 #include <conio.h> 
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <ctime>
+#include <fstream>
+#include <string>
+
 using namespace std;
 
 bool gameOver;
+
+
+void cards(vector<string>x) {
+	srand(time(0));
+	int c;
+	for (int i = 0; i < 3; i++) {
+		c = rand() % (x.size() - i);
+		cout << x[c] << "    ";
+		x.erase(x.begin() + c);
+	}
+	cout << endl << "There are still " << x.size() << " cards left in the deck." << endl;
+}
 
 void Menu() {
 	cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
@@ -19,17 +39,40 @@ void Menu() {
 	cout << "\t\t\t\t\t\t\t\t\t\t  EXIT" << endl;
 	cout << "\t\t\t\t\t\t\t\t\t(enter 'E' to start game) " << endl << endl;
 
-	char key;
-	cin >> key;
-	while (key != 2) {
+	char key =0;
+
+	while (key != 1) {
 		cin >> key;
 		if (key == '1') {
 			gameOver = false;
 			system("cls");
-			cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
-			cout << "\t\t\t\t\t\t\t\t\t\tGame start";
-			cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
-			/*	Fight();*/
+			//cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+			//cout << "\t\t\t\t\t\t\t\t\t\tGame start";
+			//cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+			
+			vector<string>person;
+
+			ifstream in("Text.txt");
+			while (in) {
+				string str;
+				in >> str;
+				person.push_back(str);
+
+
+			}
+
+			string name;
+			cout << "Please enter your name: ";
+			cin >> name;
+			srand(time(0));
+
+			cout << name << ", these are your cards: ";
+			cards(person);
+			cout << endl << "-----------------------------------------------------------------------------------------------------------------" << endl;
+			cout << "These are card of your opponent: ";
+			random_shuffle(person.begin(), person.end());
+			cards(person);
+			
 		}
 		else if (key == 'e' || key == 'E') {
 			gameOver = true;
@@ -38,9 +81,9 @@ void Menu() {
 			cout << "\t\t\t\t\t\t\t\t\t\tThank you for game:)" << endl;
 			cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 		}
-		else {
+		/*else {
 			cout << "Invalid argument. Please, try again." << endl;
-		}
+		}*/
 	}
 }
 
@@ -48,10 +91,30 @@ void Menu() {
 //
 //}
 
-//void Fight() {
 //
+//void Fight() {
+//	vector<string>person;
+//
+//	ifstream in("Text.txt");
+//	while (in) {
+//		string str;
+//		in >> str;
+//		person.push_back(str);
+//	}
+//
+//
+//	string name;
+//	cout << "Please enter your name: ";
+//	cin >> name;
+//	srand(time(0));
+//
+//	cout << name << ", these are your cards: ";
+//	cards(person);
+//	cout << endl << "-----------------------------------------------------------------------------------------------------------------" << endl;
+//	cout << "These are card of your opponent: ";
+//	random_shuffle(person.begin(), person.end());
+//	cards(person);
 //}
-
 
 
 int main() {

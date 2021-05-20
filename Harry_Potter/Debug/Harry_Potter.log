@@ -1,2 +1,4 @@
 ﻿  Harry_Potter.cpp
+D:\HarryPotter\Harry_Potter\Harry_Potter.cpp(22,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\HarryPotter\Harry_Potter\Harry_Potter.cpp(67,14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Harry_Potter.vcxproj -> D:\HarryPotter\Debug\Harry_Potter.exe
